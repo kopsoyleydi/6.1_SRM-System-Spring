@@ -11,6 +11,6 @@ import java.util.List;
 @Transactional
 public interface AppReposRepository extends JpaRepository<AppRequest, Long> {
     List<AppRequest> findAll();
-    AppRequest findByIdGreaterThan(Long id);
+    AppRequest findAllById(Long id);
     List<AppRequest> findAllByHandledEquals(boolean check);
 }

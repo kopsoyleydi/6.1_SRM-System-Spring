@@ -29,7 +29,7 @@ public class RequestServiceImp implements RequestService{
 
     @Override
     public AppRequest getApp(Long id) {
-        return appRepos.findByIdGreaterThan(id);
+        return appRepos.findAllById(id);
     }
     public List<AppRequest> getNewApps(boolean check){
         return appRepos.findAllByHandledEquals(check);

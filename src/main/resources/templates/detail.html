@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="maket.html">
 <div layout:fragment="site">
@@ -9,34 +8,34 @@
           <label>
             User Name:
           </label>
-          <input type="text" class="form-control" name="userName" th:value="${apps.userName}">
+          <input type="text" class="form-control" name="userName" th:value="${item.userName}">
         </div>
         <div class="form-group mt-2">
           <label>
             Course Name:
           </label>
-          <input type="text" class="form-control" name="courseName" th:value="${apps.courseName}">
+          <input type="text" class="form-control" name="courseName" th:value="${item.courseName}">
         </div>
-        <input type="hidden" th:value="${apps.id}" name="id">
+        <input type="hidden" th:value="${item.id}" name="id">
         <div class="form-group mt-2">
           <label>
             Commentary:
           </label>
-          <input type="text" class="form-control" name="commentary" th:value="${apps.commentary}">
+          <input type="text" class="form-control" name="commentary" th:value="${item.commentary}">
         </div>
         <div class="form-group mt-2">
           <label>
             Phone Number:
           </label>
-          <input type="text" class="form-control" name="phone" th:value="${apps.phone}">
+          <input type="text" class="form-control" name="phone" th:value="${item.phone}">
         </div>
         <div class="form-group mt-2">
           <label>
             Handled:
           </label>
           <select name="handled" class="form-control">
-            <option th:value="false" th:selected="${apps.handled}">No</option>
-            <option th:value="true" th:selected="${apps.handled}">Yes</option>
+            <option th:value="false">No</option>
+            <option th:value="true" th:selected="${item.handled}">Yes</option>
           </select>
         </div>
         <div class="form-group mt-2">

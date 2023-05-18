@@ -40,12 +40,26 @@ public class HomeController {
     @GetMapping(value = "/details/{idshka}")
     public String details(Model model, @PathVariable(name = "idshka") Long id){
         AppRequest item = requestService.getApp(id);
-        model.addAttribute("apps", item);
+        model.addAttribute("item", item);
         return "detail";
     }
+
     @PostMapping(value = "saveApps")
-    public String saveApps(AppRequest appRequest){
-        requestService.saveApp(appRequest);
+    public String saveItem(@RequestParam(name = "id", defaultValue = "0") Long id,
+                           @RequestParam(name = "userName", defaultValue = "No Item") String userName,
+                           @RequestParam(name = "courseName", defaultValue = "0") String courseName,
+                           @RequestParam(name = "phone", defaultValue = "0") String phone,
+                           @RequestParam(name = "commentary", defaultValue = "0") String commentary,
+                           @RequestParam(name = "handled", defaultValue = "0") boolean handled) {
+       AppRequest appRequest = requestService.getApp(id);
+        if(appRequest!=null) {
+            appRequest.setUserName(userName);
+            appRequest.setCourseName(courseName);
+            appRequest.setCommentary(commentary);
+            appRequest.setPhone(phone);
+            appRequest.setHandled(handled);
+            requestService.saveApp(appRequest);
+        }
         return "redirect:/";
     }
     @GetMapping(value = "addPage")
