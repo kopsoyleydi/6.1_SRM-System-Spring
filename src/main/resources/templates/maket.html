@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{'/css/bootstrap.css'}">
+    <meta charset="UTF-8">
+    <title>Application Request</title>
+</head>
+<body>
+<div class="container-fluid" th:insert="~{'navbar.html'}">
+</div>
+<div class="container" layout:fragment="site" style="min-height: 600px">
+
+</div>
+<div class="container mt-3">
+    <h4 class="text-center">Copyright (C) 2023 </h4>
+</div>
+<script th:src="@{'/js/bootstrap.js'}"></script>
+</body>
+</html>
