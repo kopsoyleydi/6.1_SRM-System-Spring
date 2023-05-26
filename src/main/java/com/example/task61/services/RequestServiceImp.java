@@ -23,8 +23,8 @@ public class RequestServiceImp implements RequestService{
     }
 
     @Override
-    public void deleteApp(AppRequest appRequest) {
-        appRepos.delete(appRequest);
+    public void deleteApp(Long id) {
+        appRepos.deleteById(id);
     }
 
     @Override

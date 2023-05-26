@@ -8,7 +8,7 @@ public interface RequestService {
     AppRequest addApp(AppRequest appRequest);
 
     List<AppRequest> getAllItems();
-    void deleteApp(AppRequest appRequest);
+    void deleteApp(Long id);
     AppRequest getApp(Long id);
     AppRequest saveApp(AppRequest appRequest);
     List<AppRequest> getNewApps(boolean check);

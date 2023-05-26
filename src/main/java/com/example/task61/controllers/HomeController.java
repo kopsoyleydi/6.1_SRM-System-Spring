@@ -71,4 +71,15 @@ public class HomeController {
         requestService.addApp(appRequest);
         return "redirect:/";
     }
+    @PostMapping(value = "/deleteApp")
+    public String deleteMap(@RequestParam(name = "id") Long id){
+        requestService.deleteApp(id);
+        return "redirect:/";
+    }
+    @PostMapping(value = "/progessApp")
+    public String progessApp(AppRequest appRequest){
+        appRequest.setHandled(false);
+        requestService.saveApp(appRequest);
+        return "redirect:/";
+    }
 }
