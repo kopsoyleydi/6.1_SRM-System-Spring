@@ -1,0 +1,12 @@
+.main1{
+    width: 400px;
+    height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

@@ -1,14 +1,22 @@
 <html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="maket.html">
 <div layout:fragment="site">
-    <div class="container">
-        <div class="card" style="width: 18rem;" th:each="app : ${zayavka}">
-            <div class="card-body">
-                <h5 class="card-title"><strong th:if="${app.handled}" style="color: red">( Новая заявка )</strong><p>Заявка от <strong th:text="${app.userName}"></strong></p></h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${app.courseName}"></h6>
-                <p class="card-text" th:text="${app.commentary}"></p>
-                <h6 class="card-body" th:text="${app.phone}"></h6>
-                <td><a th:href="@{'details/' + ${app.id}}" class="btn btn-info btn-sm">DETAILS</a></td>
+    <div class="main" style="display: flex;flex-direction: row;flex-wrap: wrap;width: 100%">
+        <div class="main1 mt-2 ms-1" th:each="n : ${zayavka}" style="width: 550px;display: flex;flex-direction: column;
+            justify-content: space-between; font-size: 18px; height: 150px">
+            <div class="app">
+                <div style="display: flex;flex-direction: row">
+                    <h5 th:if="${n.handled}" style="color: red" class="me-1"> ( Новая заявка ) </h5>
+                    <h5 th:text="${n.userName}"></h5>
+                </div>
+                <div style="display: flex;flex-direction: column">
+                    <h6 th:text="${n.courseName}"></h6>
+                    <h6 th:text="${n.commentary}"></h6>
+                </div>
+                <div style="display: flex;flex-direction: row">
+                    <h6 th:text="${n.phone}"></h6>
+                    <a th:href="@{'details/' + ${n.id}}" class="ms-2" style="font-size: 15px;margin-bottom: 5px">details</a>
+                </div>
             </div>
         </div>
     </div>
