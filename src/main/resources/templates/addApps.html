@@ -15,7 +15,10 @@
           <label>
             Course Name:
           </label>
-          <input type="text" class="form-control" name="courseName">
+          <select name="courseName" th:each="c : ${courses}">
+            <option th:text="${c.name}" th:value="${c.id}" th:selected="${!c.name}">
+            </option>
+          </select>
         </div>
         <input type="hidden" th:value="true" name="handled">
         <div class="form-group mt-2">

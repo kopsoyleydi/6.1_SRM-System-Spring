@@ -2,6 +2,8 @@ package com.example.task61.controllers;
 
 
 import com.example.task61.entities.AppRequest;
+import com.example.task61.entities.CourseEntity;
+import com.example.task61.repository.CourseRepository;
 import com.example.task61.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class HomeController {
 
     @Autowired
     private RequestService requestService;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @GetMapping(value = "/")
     public String index(Model model){
@@ -41,29 +46,36 @@ public class HomeController {
     public String details(Model model, @PathVariable(name = "idshka") Long id){
         AppRequest item = requestService.getApp(id);
         model.addAttribute("item", item);
+        List<CourseEntity> courseEntities = courseRepository.findAll();
+        model.addAttribute("courses", courseEntities);
         return "detail";
     }
 
     @PostMapping(value = "saveApps")
     public String saveItem(@RequestParam(name = "id", defaultValue = "0") Long id,
                            @RequestParam(name = "userName", defaultValue = "No Item") String userName,
-                           @RequestParam(name = "courseName", defaultValue = "0") String courseName,
+                           @RequestParam(name = "course_id") Long course_id,
                            @RequestParam(name = "phone", defaultValue = "0") String phone,
                            @RequestParam(name = "commentary", defaultValue = "0") String commentary,
                            @RequestParam(name = "handled", defaultValue = "0") boolean handled) {
        AppRequest appRequest = requestService.getApp(id);
+        CourseEntity courses = courseRepository.findAllById(id);
         if(appRequest!=null) {
             appRequest.setUserName(userName);
-            appRequest.setCourseName(courseName);
             appRequest.setCommentary(commentary);
             appRequest.setPhone(phone);
             appRequest.setHandled(handled);
+            appRequest.setCourses(courses);
             requestService.saveApp(appRequest);
         }
         return "redirect:/";
     }
     @GetMapping(value = "addPage")
-    public String addPage(){
+    public String addPage(Model model){
+        List<AppRequest> appRequestList = requestService.getAllItems();
+        List<CourseEntity> courseEntities = courseRepository.findAll();
+        model.addAttribute("zayavka", appRequestList);
+        model.addAttribute("courses", courseEntities);
         return "addApps";
     }
     @PostMapping(value = "addApps")
